@@ -1,11 +1,11 @@
+language: c
+
 install:
-  - git clone https://github.com/freifunk-gluon/gluon.git ./freifunk_build -b v2016.1.3
-  - cd ./freifunk_build
-  - mkdir site
-  - cd site
+  - git clone https://github.com/freifunk-gluon/gluon.git $HOME/freifunk_build -b v2016.1.3
+  - mv $TRAVIS_BUILD_DIR $HOME/freifunk_build/site
 
 before_script:
-  - cd ../
+  - cd $HOME/freifunk_build
 
 script:
   - make update V=s
@@ -14,11 +14,12 @@ script:
 
 cache:
   directories:
-    - ./freifunk_build/openwrt
+    - $HOME/freifunk_build/openwrt
 
 deploy:
   provider: releases
-  api_key: $api_key
+  api_key:
+    secure: "TtrAMVNNbc23A375sGkS73lc+8Q/SXRpEhqR1xqPZt0uqD0dn+adRKmyc8B5LWXjWddKAtRz+wENOAFIKN689JxSRevRf9u+1srzma2Smz2wv99qKOE1k4NO59CMf16mJYJVrXoZ9TlBcPwbNjDmF5dSsb0xd/3ouFq2Rokvmolg5iG11KHGtdq3uHAdk2MX6SInIoO9Gw9G1/l9QIDBbvzpWlb6Iyj32XupdoIZv9gotsil2FszyTY86eeHSxNZU38nDQnr/FYwNjHx0Hjol8rjJ0v95TER/K7ru69ul703B3p4AwmWSGkl9q1wdIFl4XC/wcpcjdiJ9hnvoHghjEumc2TYzNeswIQrnlIkB7xmrYOOmBvtqxtXhPk3RjoMoEwYOUS7Zn5FQLCAycm/qXY4Rl+e8jH2tyheGLwNKGuKRAmjbSZhFVcyNG/qBBPBvgMVFqL1y9J3aM3uZfQsY1GAulrp/Kh+gVihAoLCuGYJmLiz2e/qb+UMgosnRh1E4ZW9d7g0lRhUVmM04O04CcFw8EibVIKGFOM4T56e9vr2xkZ5eF168AHqj/9AJayAXvhAL8ocsagARjTgDkl61Gt8zyi5Huhtcz8em80VOjUthafyvxbZzP9UvPcSOnlNh/u7hMV9hXsq0JoadT6FIP+WEbiL4gBlO2031Xjn3m4="
   file_glob: true
   file:
     - output/images/factory/*
