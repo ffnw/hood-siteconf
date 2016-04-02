@@ -1,0 +1,28 @@
+install:
+  - git clone https://github.com/freifunk-gluon/gluon.git ./freifunk_build -b v2016.1.3
+  - cd ./freifunk_build
+  - mkdir site
+  - cd site
+
+before_script:
+  - cd ../
+
+script:
+  - make update V=s
+  - make -j 8 GLUON_BRANCH=stable V=s
+  - make manifest GLUON_BRANCH=stable
+
+cache:
+  directories:
+    - ./freifunk_build/openwrt
+
+deploy:
+  provider: releases
+  api_key: $api_key
+  file_glob: true
+  file:
+    - output/images/factory/*
+    - output/images/sysupgrade/*
+  skip_cleanup: true
+  on:
+    tag: true
