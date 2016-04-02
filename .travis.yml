@@ -5,6 +5,7 @@ install:
   - mv $TRAVIS_BUILD_DIR $HOME/freifunk_build/site
 
 before_script:
+  - mkdir $HOME/cache || true
   - mv $HOME/cache/* $HOME/freifunk_build/
   - rm -r $HOME/cache/*
   - cd $HOME/freifunk_build
