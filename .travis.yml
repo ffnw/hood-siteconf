@@ -9,6 +9,7 @@ install:
   - mv $TRAVIS_BUILD_DIR $HOME/freifunk_build/site
 
 before_script:
+  - mkdir $HOME/cache/openwrt || true
   - ln -s $HOME/cache/openwrt $HOME/freifunk_build/openwrt
   - cd $HOME/freifunk_build
 
