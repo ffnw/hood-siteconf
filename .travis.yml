@@ -5,6 +5,8 @@ install:
   - mv $TRAVIS_BUILD_DIR $HOME/freifunk_build/site
 
 before_script:
+  - mv $HOME/cache/* $HOME/freifunk_build/
+  - rm -r $HOME/cache/*
   - cd $HOME/freifunk_build
 
 script:
@@ -12,9 +14,12 @@ script:
   - make -j 8 GLUON_BRANCH=stable V=s
   - make manifest GLUON_BRANCH=stable
 
+after_script:
+  - mv $HOME/freifunk_build/openwrt $HOME/cache/
+
 cache:
   directories:
-    - $HOME/freifunk_build/openwrt
+    - $HOME/cache
 
 deploy:
   provider: releases
