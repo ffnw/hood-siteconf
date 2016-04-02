@@ -2,7 +2,7 @@ language: c
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y git subversion python build-essential gawk unzip libncurses-dev libz-dev libssl-dev
+  - sudo apt-get install -y git subversion python build-essential gawk unzip libncurses-dev libz-dev libssl-dev lua5.2
 
 install:
   - git clone https://github.com/freifunk-gluon/gluon.git $HOME/freifunk_build -b v2016.1.3
