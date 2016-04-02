@@ -1,17 +1,8 @@
 language: c
 
-addons:
-  apt:
-    packages:
-      - git
-      - subversion
-      - python
-      - build-essential
-      - gawk
-      - unzip
-      - libncurses-dev
-      - libz-dev
-      - libssl-dev
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y git subversion python build-essential gawk unzip libncurses-dev libz-dev libssl-dev
 
 install:
   - git clone https://github.com/freifunk-gluon/gluon.git $HOME/freifunk_build -b v2016.1.3
